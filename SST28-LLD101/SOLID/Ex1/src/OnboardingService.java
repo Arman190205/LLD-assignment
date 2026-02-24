@@ -2,12 +2,12 @@ import java.util.*;
 
 public class OnboardingService {
 
-    private final FakeDb db;
+    private final StudentRepository db;
     private final StudentParser parser;
     private final StudentValidator validator;
     private final RegistrationPrint printer;
 
-    public OnboardingService(FakeDb db) {
+    public OnboardingService(StudentRepository db) {
         this.db = db;
         this.parser = new StudentParser();
         this.validator = new StudentValidator();
