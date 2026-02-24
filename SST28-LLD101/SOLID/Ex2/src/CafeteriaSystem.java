@@ -7,7 +7,7 @@ public class CafeteriaSystem {
     private final PricingCalculator pricingCalculator;
     private final TaxPolicy taxPolicy;
     private final DiscountPolicy discountPolicy;
-    private final InvoiceBuilder invoiceBuilder;
+    private final InvoiceFormatter invoiceBuilder;
 
     private int invoiceSeq = 1000;
 
@@ -16,7 +16,7 @@ public class CafeteriaSystem {
         this.pricingCalculator = new PricingCalculator();
         this.taxPolicy = new DefaultTaxPolicy();
         this.discountPolicy = new DefaultDiscountPolicy();
-        this.invoiceBuilder = new InvoiceBuilder();
+        this.invoiceBuilder = new InvoiceFormatter();
     }
 
     public void addToMenu(MenuItem i) {
@@ -47,14 +47,11 @@ public class CafeteriaSystem {
                 discount, total
         );
 
-        // 6. Format (still same behavior)
-        String printable = InvoiceFormatter.identityFormat(invoiceText);
+        // 6. Print
+        System.out.print(invoiceText);
 
-        // 7. Print
-        System.out.print(printable);
-
-        // 8. Save
-        store.save(invId, printable);
+        // 7. Save
+        store.save(invId, invoiceText);
 
         System.out.println("Saved invoice: " + invId +
                 " (lines=" + store.countLines(invId) + ")");
