@@ -1,5 +1,7 @@
 package com.example.metrics;
 
+import java.util.Map;
+
 public class App {
 
     public static void main(String[] args) throws Exception {
