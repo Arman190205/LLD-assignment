@@ -1,5 +1,6 @@
 import com.example.tickets.IncidentTicket;
 import com.example.tickets.TicketService;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TryIt {
@@ -17,12 +18,12 @@ public class TryIt {
         System.out.println("Created: " + t);
 
         // Demonstrate post-creation mutation through service
-        service.assign(t, "agent@example.com");
-        service.escalateToCritical(t);
+        t = service.assign(t, "agent@example.com");
+        t = service.escalateToCritical(t);
         System.out.println("\nAfter service mutations: " + t);
 
         // Demonstrate external mutation via leaked list reference
-        List<String> tags = t.getTags();
+        List<String> tags = new ArrayList<>(t.getTags());
         tags.add("HACKED_FROM_OUTSIDE");
         System.out.println("\nAfter external tag mutation: " + t);
     }
