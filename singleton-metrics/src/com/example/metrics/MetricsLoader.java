@@ -15,7 +15,7 @@ public class MetricsLoader {
         }
 
         MetricsRegistry registry = MetricsRegistry.getInstance();
-
+ 
         for (String key : props.stringPropertyNames()) {
 
             String raw = props.getProperty(key, "0").trim();

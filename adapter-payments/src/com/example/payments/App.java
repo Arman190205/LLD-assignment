@@ -12,10 +12,10 @@ public class App {
         gateways.put("fastpay", new FastPayAdapter(new FastPayClient()));
         gateways.put("safecash", new SafeCashAdapter(new SafeCashClient()));
 
-        OrderService svc = new OrderService(gateways);
+        OrderService svc = new OrderService();
 
-        String id1 = svc.charge("fastpay", "cust-1", 1299);
-        String id2 = svc.charge("safecash", "cust-2", 1299);
+        String id1 = svc.charge(gateways.get("fastpay"), "cust-1", 1299);
+        String id2 = svc.charge(gateways.get("safecash"), "cust-2", 1299);
 
         System.out.println(id1);
         System.out.println(id2);
